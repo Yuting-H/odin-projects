@@ -17,32 +17,32 @@ body {
   height: 100vh;
 }
 
-div {
-}
-
 #content {
   padding: 16px;
   height: 100%;
 }
 
 #title {
-  margin-top: 16px;
+  margin: 16px;
+}
+
+#status {
+  display: flex;
+  flex-direction: row;
+  gap: 32px;
   margin-bottom: auto;
 }
 
 #computer {
   border: 2px solid black;
   padding: 16px;
+  margin: 32px;
 }
 
-#results {
+#input {
+  margin-bottom: 100px;
   display: flex;
   flex-direction: row;
-  gap: 32px;
-}
-
-#player {
-  margin-bottom: auto;
-  display: flex;
+  flex-wrap: wrap;
   gap: 16px;
 }
