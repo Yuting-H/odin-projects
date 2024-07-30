@@ -66,6 +66,14 @@ resetBtn.addEventListener("click", (e) => {
   resetCanvas(canvasLength);
 });
 
+//paint mode button
+modeBtn.addEventListener("click", (e) => {
+  if (mode == "paint") {
+    mode = "rainbow";
+    modeBtn.innerText = Rainbow;
+  }
+});
+
 /*functions*/
 
 //fills the div with a grid of pixels
