@@ -1,0 +1,32 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+button {
+  padding: 4px;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+#header {
+  padding: 8px;
+}
+
+#container {
+  flex-grow: 1;
+  margin: 32px;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+}
+
+.pixel {
+  border: 1px solid green;
+}
