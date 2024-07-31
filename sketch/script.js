@@ -6,6 +6,8 @@ const resetBtn = document.querySelector("#reset");
 
 const modeBtn = document.querySelector("#mode");
 
+const opacityBtn = document.querySelector("#opacity")
+
 //default canvas size to 16 * 16
 let canvasLength = 16;
 
@@ -53,6 +55,7 @@ changSizeBtn.addEventListener("click", (e) => {
 
   newLength = window.prompt("Enter a size between 4 and 100");
 
+  //determine if user input size is valid
   if (Number(newLength) && newLength >= 4 && newLength <= 100) {
     canvasLength = newLength;
     resetCanvas(canvasLength);
@@ -63,16 +66,44 @@ changSizeBtn.addEventListener("click", (e) => {
 
 //reset button
 resetBtn.addEventListener("click", (e) => {
-  resetCanvas(canvasLength);
+  resetCanvas(canvasLength);  //clear canvas keeping its size
 });
 
 //paint mode button
 modeBtn.addEventListener("click", (e) => {
+
+  //switch between paint and rainbow mode
   if (mode == "paint") {
     mode = "rainbow";
-    modeBtn.innerText = Rainbow;
+    modeBtn.innerText = "Rainbow mode";
+  } else if (mode == "rainbow") {
+    mode = "paint"
+    modeBtn.innerText = "Paint mode"
   }
+
+  modeBtn.classList.toggle('colorful')
 });
+
+//opacity button, has to use mouseup event
+opacityBtn.addEventListener('mouseup', (e) => {
+
+  e.preventDefault(); 
+  
+  //left click adds opacity
+  if (e.button == 0 && opacity < 0.99) {
+    opacity += 0.1;
+  }else if (e.button == 2 && opacity > 0.11) {  //right click reduces opacity
+    opacity -= 0.1;
+  }
+
+  //round opacity to 1 decimal place
+  opacity = Math.round(opacity*10)/10
+
+  //updates opacity number on html
+  opacityBtn.innerText = `Opacity ${Number(opacity)*100}%`
+
+})
+
 
 /*functions*/
 
@@ -108,12 +139,22 @@ function fillPixel(pixel) {
   //if in paint mode, fill a pixel with a black color and an opacity
   if (mode == "paint") {
     pixel.style.backgroundColor = "black";
-
-    if (Number(pixel.style.opacity) < 1) {
-      pixel.style.opacity = Number(pixel.style.opacity) + opacity;
-    }
   } else if (mode == "rainbow") {
+    pixel.style.backgroundColor = randomColor()
   }
+  
+  if (Number(pixel.style.opacity) < 1) {
+    pixel.style.opacity = Number(pixel.style.opacity) + opacity;
+  }
+}
+
+//returns a random rgb value
+function randomColor() {
+  let r = Math.random() * 255;
+  let g = Math.random() * 255
+  let b = Math.random() * 255
+  
+  return `rgb(${r}, ${g}, ${b})`
 }
 
 //reset the current canvas then create a new one with size newLength * newLength

@@ -46,3 +46,10 @@ body {
 .filled {
   background-color: black;
 }
+
+.colorful{ 
+  color: white;
+  background: rgb(229,204,195);
+  background: linear-gradient(135deg, rgba(229,204,195,1) 0%, rgba(96,71,223,1) 100%);
+  border: 2px solid orange;
+}
