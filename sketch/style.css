@@ -7,6 +7,8 @@
 button {
   padding: 4px;
   font-size: large;
+  border: 1px solid gray;
+  border-radius: 8px;
 }
 
 body {
@@ -31,6 +33,7 @@ body {
   height: 60vh;
   max-height: 60vh;
   border: 2px solid black;
+  border-radius: 4px;
 }
 
 .row {
@@ -47,9 +50,13 @@ body {
   background-color: black;
 }
 
-.colorful{ 
+.colorful {
   color: white;
-  background: rgb(229,204,195);
-  background: linear-gradient(135deg, rgba(229,204,195,1) 0%, rgba(96,71,223,1) 100%);
+  background: rgb(229, 204, 195);
+  background: linear-gradient(
+    135deg,
+    rgba(229, 204, 195, 1) 0%,
+    rgba(96, 71, 223, 1) 100%
+  );
   border: 2px solid orange;
 }
