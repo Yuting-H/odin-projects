@@ -1,25 +1,21 @@
-const link = document.querySelector("a");
+function sumOfTripletEvens(array: Array) {
+  array = array.filter((num) => {
+    if (num % 2 == 0) {
+      return true;
+    } else {
+      return false;
+    }
+  });
 
-link.href = "https://developer.mozilla.org";
+  array = array.map((num) => {
+    return num * 3;
+  });
 
-link.textContent = "Mozilla Developer Network"
+  let sum = array.reduce((total, curr) => {
+    return total + curr;
+  }, 0);
+}
 
-const sect = document.querySelector("section");
+let arr = [1, 2, 3, 4, 5];
 
-
-const para = document.createElement("p");
-
-para.textContent = "We hope you enjoyed the ride.";
-
-sect.appendChild(para);
-
-
-const text = document.createTextNode(
-    " — the premier source for web development knowledge.",
-);
-
-sect.appendChild(text);
-
-para.setAttribute("class", "highlight")
-
-  
+console.log(sumOfTripletEvens(arr));
