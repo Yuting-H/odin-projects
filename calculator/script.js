@@ -21,9 +21,8 @@ pad.addEventListener("click", (e) => {
         break;
 
       case "%":
-        percentify();
+        percentify(); //handles percentage behavior
         break;
-
       default:
         equation.push(e.target.innerText);
         break;
@@ -76,7 +75,21 @@ function updateDisplay() {
 }
 
 /**
- * Divides the last number in equation[]
- * if not a numebr, aleart a err message
+ * glues array of single characters into array of numbers and operants,
+ * which is suitable to be calculated
  */
-function percentify() {}
+function consolidateEquation() {}
+
+/**
+ * Insert "%" into equation
+ * if trying to percentify a non-number, alert an error
+ */
+function percentify() {
+  let prev = equation.at(-1);
+
+  if (parseFloat(prev)) {
+    equation.push("%");
+  } else {
+    alert("Invalid Format");
+  }
+}
