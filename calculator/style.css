@@ -13,7 +13,6 @@ body {
 
 div {
   border: 1px solid red;
-  margin: 4px;
 }
 
 .fill {
@@ -31,18 +30,16 @@ div {
 #display {
   width: 100%;
   height: 72px;
+  text-align: start;
+  display: flex;
+  align-items: center;
 }
 
 #pad {
   display: flex;
   flex-direction: row;
-  flex-flow: column wrap;
-  width: 350px;'
-height: 350px;
-}
-
-.tall {
-  flex-grow: 1;
+  flex-flow: row wrap;
+  width: 272px;
 }
 
 #pad button {
