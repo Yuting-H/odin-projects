@@ -23,8 +23,16 @@ pad.addEventListener("click", (e) => {
       case "%":
         percentify(); //handles percentage behavior
         break;
-      default:
-        equation.push(e.target.innerText);
+
+      case "=":
+        break;
+      default: //neither of the above
+        //check if operator
+        if (!parseFloat(btnTxt)) {
+          insertOp(btnTxt);
+        } else {
+          equation.push(e.target.innerText);
+        }
         break;
     }
   }
@@ -87,8 +95,23 @@ function consolidateEquation() {}
 function percentify() {
   let prev = equation.at(-1);
 
+  //check if previous element is a number
   if (parseFloat(prev)) {
     equation.push("%");
+  } else {
+    alert("Invalid Format");
+  }
+}
+
+/**
+ * Check if inserting a op is valid
+ */
+function insertOp(op) {
+  let prev = equation.at(-1);
+
+  //check if previous element is a number or a "%"
+  if (parseFloat(prev) || prev == "%") {
+    equation.push(op);
   } else {
     alert("Invalid Format");
   }
