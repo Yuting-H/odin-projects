@@ -25,13 +25,14 @@ pad.addEventListener("click", (e) => {
         break;
 
       case "=":
+        //handle operate
         break;
       default: //neither of the above
         //check if operator
         if (!parseFloat(btnTxt)) {
-          insertOp(btnTxt);
+          insertOp(btnTxt); //if possible, push op
         } else {
-          equation.push(e.target.innerText);
+          equation.push(e.target.innerText); //not op, push number
         }
         break;
     }
