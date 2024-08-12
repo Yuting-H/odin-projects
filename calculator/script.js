@@ -3,7 +3,12 @@ const display = document.querySelector("#display");
 const pad = document.querySelector("#pad");
 
 //store each number or operator in this array
-let equation = [];
+let equation = [0];
+
+//init display with "0"
+updateDisplay();
+
+console.log(equation.at[-1]);
 
 //pad listenes to any click events
 pad.addEventListener("click", (e) => {
@@ -13,15 +18,15 @@ pad.addEventListener("click", (e) => {
 
     switch (btnTxt) {
       case "cls":
-        equation = [];
+        equation = [0];
         break;
 
       case "<-":
-        equation.pop();
-        break;
-
-      case "%":
-        percentify(); //handles percentage behavior
+        if (equation.length > 1) {
+          equation.pop();
+        } else {
+          equation = [0];
+        }
         break;
 
       case "=":
@@ -29,11 +34,7 @@ pad.addEventListener("click", (e) => {
         break;
       default: //neither of the above
         //check if operator
-        if (!parseFloat(btnTxt)) {
-          insertOp(btnTxt); //if possible, push op
-        } else {
-          equation.push(e.target.innerText); //not op, push number
-        }
+        insertOp(btnTxt);
         break;
     }
   }
@@ -90,30 +91,83 @@ function updateDisplay() {
 function consolidateEquation() {}
 
 /**
- * Insert "%" into equation
- * if trying to percentify a non-number, alert an error
- */
-function percentify() {
-  let prev = equation.at(-1);
-
-  //check if previous element is a number
-  if (parseFloat(prev)) {
-    equation.push("%");
-  } else {
-    alert("Invalid Format");
-  }
-}
-
-/**
  * Check if inserting a op is valid
  */
 function insertOp(op) {
   let prev = equation.at(-1);
 
-  //check if previous element is a number or a "%"
-  if (parseFloat(prev) || prev == "%") {
-    equation.push(op);
-  } else {
-    alert("Invalid Format");
+  //get flags about this op and the previous char in the equation
+  let opType = {
+    isNumber: parseFloat(op) || op == "0",
+    isZero: op == "0",
+    isDecimal: op == ".",
+    isPercent: op == "%",
+    isBasic: op == "+" || op == "-" || op == "*" || op == "/",
+  };
+
+  let prevType = {
+    isFirst: equation.length <= 1,
+    isNumber: parseFloat(prev) || prev == "0",
+    isZero: prev == "0",
+    isDecimal: prev == ".",
+    isPercent: prev == "%",
+    isBasic: prev == "+" || prev == "-" || prev == "*" || prev == "/",
+  };
+
+  //determines what can be pushed
+
+  if (prevType.isFirst && prevType.isZero) {
+    if (opType.isNumber) {
+      equation = [op];
+    } else {
+      console.log("Invalid format");
+    }
+    return;
+  }
+
+  if (prevType.isZero) {
+    if (opType.isZero) {
+      console.log("Invalid format");
+    } else {
+      equation.push(op);
+    }
+    return;
+  }
+
+  if (prevType.isNumber) {
+    if (prevType.isFirst && prevType.isZero) {
+      //replace 0 with op
+      equation[0] = op;
+    } else {
+      equation.push(op);
+    }
+
+    return;
+  }
+
+  if (prevType.isDecimal) {
+    console.log(prevType.isPercent);
+    if (opType.isDecimal || opType.isBasic) {
+      console.log("Invalid format");
+    } else {
+      equation.push(op);
+    }
+    return;
+  }
+
+  if (prevType.isPercent) {
+    if (opType.isNumber || opType.isDecimal || opType.isPercent) {
+      console.log("invalid format");
+    } else {
+      equation.push(op);
+    }
+  }
+
+  if (prevType.isBasic) {
+    if (opType.isDecimal || opType.isBasic) {
+      console.log("Invalid format");
+    } else {
+      equation.push(op);
+    }
   }
 }
