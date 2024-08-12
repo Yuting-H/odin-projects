@@ -17,7 +17,7 @@ pad.addEventListener("click", (e) => {
     let btnTxt = e.target.innerText;
 
     switch (btnTxt) {
-      case "cls":
+      case "CE":
         equation = [0];
         break;
 
