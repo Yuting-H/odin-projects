@@ -1,5 +1,5 @@
 :root {
-  --buff: #cb997eff;
+  --buff: rgb(78, 77, 58);
   --champagne-pink: #eddcd2ff;
   --linen: #fff1e6ff;
   --isabelline: rgb(216, 215, 211);
@@ -29,6 +29,7 @@ body {
 
 #calculator {
   border: 4px solid var(--desert-sand);
+  background-color: var(--desert-sand);
   border-radius: 8px;
   display: flex;
   align-items: center;
@@ -40,12 +41,11 @@ body {
   background-color: var(--dark);
   color: var(--isabelline);
   border-radius: 4px;
-  width: 100%;
+  width: 270px;
   height: 96px;
-  text-align: start;
   display: flex;
-  align-items: start;
   font-size: 32px;
+  padding: 4px;
 }
 
 #pad {

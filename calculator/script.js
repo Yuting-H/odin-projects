@@ -30,7 +30,7 @@ pad.addEventListener("click", (e) => {
         break;
 
       case "=":
-        //handle operate
+        consolidateEquation();
         break;
       default: //neither of the above
         //check if operator
@@ -81,14 +81,15 @@ function operate(a, op, b) {
  * Updates the HTML number display
  */
 function updateDisplay() {
-  display.innerText = equation;
+  display.innerText = equation.join("");
 }
 
 /**
- * glues array of single characters into array of numbers and operants,
- * which is suitable to be calculated
+ * Returns a well formed equation ready to be computeed
  */
-function consolidateEquation() {}
+function consolidateEquation() {
+  //joins array
+}
 
 /**
  * Check if inserting a op is valid
