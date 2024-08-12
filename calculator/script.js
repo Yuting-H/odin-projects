@@ -88,7 +88,26 @@ function updateDisplay() {
  * Returns a well formed equation ready to be computeed
  */
 function consolidateEquation() {
-  //joins array
+  //increment counter until reached a NaN, set tail, add to wellFormed
+
+  let tip = 0;
+
+  let tail = 0;
+
+  let wellFormed = [];
+
+  for (let i = 0; i < equation.length; i++) {
+    //if equation[i] is a number
+    if (parseFloat(equation[i]) || parseFloat(equation[i] == 0)) {
+      //set tail
+      tail++;
+    } else {
+      //reached NaN, slice array and update
+      wellFormed.push(equation.slice(tip, tail));
+      tip = tail;
+      tail++;
+    }
+  }
 }
 
 /**
