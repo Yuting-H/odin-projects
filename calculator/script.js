@@ -116,60 +116,75 @@ function insertOp(op) {
 
   //determines what can be pushed
 
-  if (prevType.isFirst && prevType.isZero) {
-    if (opType.isNumber) {
+  //if trying to push the number 0
+  if (opType.isZero) {
+    //output error if
+    //equation[] = [0], should not be [0,0], or
+    //prev is "%" or
+    (prevType.isZero && prevType.isFirst) || prevType.isPercent
+      ? console.log("Invalid format")
+      : equation.push(op);
+    return;
+  }
+
+  //if trying to push any number
+  if (opType.isNumber) {
+    if (prevType.isPercent) {
+      console.log("err");
+    } else if (prevType.isFirst && prevType.isZero) {
       equation = [op];
-    } else if (opType.isDecimal || opType.isPercent) {
-      equation.push(op);
-    } else {
-      console.log("Invalid format");
-    }
-    return;
-  }
-
-  if (prevType.isZero) {
-    if (opType.isZero) {
-      console.log("Invalid format");
     } else {
       equation.push(op);
     }
     return;
   }
 
-  if (prevType.isNumber) {
-    if (prevType.isFirst && prevType.isZero) {
-      //replace 0 with op
-      equation[0] = op;
-    } else {
-      equation.push(op);
-    }
-
+  if (opType.isDecimal) {
+    prevType.isDecimal ||
+    prevType.isPercent ||
+    prevType.isBasic ||
+    inValidDecimal()
+      ? console.log("Invalid format")
+      : equation.push(op);
     return;
   }
 
-  if (prevType.isDecimal) {
-    console.log(prevType.isPercent);
-    if (opType.isDecimal || opType.isBasic) {
-      console.log("Invalid format");
-    } else {
-      equation.push(op);
-    }
+  if (opType.isPercent) {
+    prevType.isBasic || prevType.isDecimal || prevType.isPercent
+      ? console.log("Invalid format")
+      : equation.push(op);
     return;
   }
 
-  if (prevType.isPercent) {
-    if (opType.isNumber || opType.isDecimal || opType.isPercent) {
-      console.log("invalid format");
-    } else {
-      equation.push(op);
-    }
+  if (opType.isBasic) {
+    prevType.isBasic || prevType.isDecimal
+      ? console.log("Invalid format")
+      : equation.push(op);
+    return;
+  }
+}
+
+//check if a valid decimal can be inserted at the end of equation[]
+//decimal is only valid if
+//no decimal exist in equation[] or,
+//last decimal in equation[] is seperated by a basic op.
+//Invalid examples: 1.2.3, 10%.5,
+function inValidDecimal() {
+  let lastDecimal = equation.lastIndexOf(".");
+
+  //no decimal found, validate
+  if (lastDecimal == -1) {
+    return false;
   }
 
-  if (prevType.isBasic) {
-    if (opType.isDecimal || opType.isPercent || opType.isBasic) {
-      console.log("Invalid format");
-    } else {
-      equation.push(op);
-    }
-  }
+  //decimal found, find last index of any basic operant
+  let lastOp = Math.max(
+    equation.lastIndexOf("+"),
+    equation.lastIndexOf("-"),
+    equation.lastIndexOf("*"),
+    equation.lastIndexOf("/")
+  );
+
+  //if decimal appears before basic op then invalidate
+  return lastOp < lastDecimal ? true : false;
 }
