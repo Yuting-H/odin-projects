@@ -119,6 +119,8 @@ function insertOp(op) {
   if (prevType.isFirst && prevType.isZero) {
     if (opType.isNumber) {
       equation = [op];
+    } else if (opType.isDecimal || opType.isPercent) {
+      equation.push(op);
     } else {
       console.log("Invalid format");
     }
@@ -164,7 +166,7 @@ function insertOp(op) {
   }
 
   if (prevType.isBasic) {
-    if (opType.isDecimal || opType.isBasic) {
+    if (opType.isDecimal || opType.isPercent || opType.isBasic) {
       console.log("Invalid format");
     } else {
       equation.push(op);
