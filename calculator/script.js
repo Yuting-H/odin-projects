@@ -114,7 +114,7 @@ function insertOp(op) {
     isBasic: prev == "+" || prev == "-" || prev == "*" || prev == "/",
   };
 
-  //determines what can be pushed
+  //determines the type of operants
 
   //if trying to push the number 0
   if (opType.isZero) {
@@ -139,16 +139,18 @@ function insertOp(op) {
     return;
   }
 
+  //if trying to push a decimal
   if (opType.isDecimal) {
     prevType.isDecimal ||
     prevType.isPercent ||
     prevType.isBasic ||
-    inValidDecimal()
+    notValidDecimal()
       ? console.log("Invalid format")
       : equation.push(op);
     return;
   }
 
+  //if trying to push a percentage operator
   if (opType.isPercent) {
     prevType.isBasic || prevType.isDecimal || prevType.isPercent
       ? console.log("Invalid format")
@@ -156,6 +158,7 @@ function insertOp(op) {
     return;
   }
 
+  //if trying to push a basic operator: +, - *, /
   if (opType.isBasic) {
     prevType.isBasic || prevType.isDecimal
       ? console.log("Invalid format")
@@ -169,7 +172,7 @@ function insertOp(op) {
 //no decimal exist in equation[] or,
 //last decimal in equation[] is seperated by a basic op.
 //Invalid examples: 1.2.3, 10%.5,
-function inValidDecimal() {
+function notValidDecimal() {
   let lastDecimal = equation.lastIndexOf(".");
 
   //no decimal found, validate
