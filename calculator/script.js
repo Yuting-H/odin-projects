@@ -30,6 +30,11 @@ pad.addEventListener("click", (e) => {
         break;
 
       case "=":
+        //if last char is not a number, equation is not valid
+        if (!parseFloat(equation.at(-1)) && equation.at(-1) != "0") {
+          invalidate();
+          break;
+        }
         let wellFormed = consolidateEquation(); //merge array of chars to calculatable array
         let result = calculate(wellFormed); //calculate result
         equation = result.split(""); //turn numeric result back into array of chars
