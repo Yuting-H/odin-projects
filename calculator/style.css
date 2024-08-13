@@ -72,4 +72,13 @@ body {
   flex-flow: column nowrap;
   justify-content: center;
   align-items: center;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.347);
+}
+
+#pad button:active {
+  background-color: var(--champagne-pink);
+}
+
+#pad button:hover {
+  cursor: pointer;
 }

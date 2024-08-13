@@ -31,7 +31,11 @@ pad.addEventListener("click", (e) => {
 
       case "=":
         //if last char is not a number, equation is not valid
-        if (!parseFloat(equation.at(-1)) && equation.at(-1) != "0") {
+        if (
+          !parseFloat(equation.at(-1)) &&
+          equation.at(-1) != "0" &&
+          equation.at(-1) != "%"
+        ) {
           invalidate();
           break;
         }
