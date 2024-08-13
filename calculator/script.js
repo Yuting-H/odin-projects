@@ -30,7 +30,8 @@ pad.addEventListener("click", (e) => {
         break;
 
       case "=":
-        consolidateEquation();
+        let wellFormed = consolidateEquation();
+        console.log(wellFormed);
         break;
       default: //neither of the above
         //check if operator
@@ -90,24 +91,10 @@ function updateDisplay() {
 function consolidateEquation() {
   //increment counter until reached a NaN, set tail, add to wellFormed
 
-  let tip = 0;
+  let wellFormed = equation.join("");
 
-  let tail = 0;
-
-  let wellFormed = [];
-
-  for (let i = 0; i < equation.length; i++) {
-    //if equation[i] is a number
-    if (parseFloat(equation[i]) || parseFloat(equation[i] == 0)) {
-      //set tail
-      tail++;
-    } else {
-      //reached NaN, slice array and update
-      wellFormed.push(equation.slice(tip, tail));
-      tip = tail;
-      tail++;
-    }
-  }
+  wellFormed = wellFormed.split(/(?=[\+\-\*\/\%])|(?<=[\+\-\*\/\%])/g);
+  return wellFormed;
 }
 
 /**
