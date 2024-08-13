@@ -8,8 +8,6 @@ let equation = [0];
 //init display with "0"
 updateDisplay();
 
-console.log(equation.at[-1]);
-
 //pad listenes to any click events
 pad.addEventListener("click", (e) => {
   //Check if button click
@@ -17,10 +15,12 @@ pad.addEventListener("click", (e) => {
     let btnTxt = e.target.innerText;
 
     switch (btnTxt) {
+      //clear all button
       case "CE":
         equation = [0];
         break;
 
+      //backspace button
       case "<-":
         if (equation.length > 1) {
           equation.pop();
@@ -30,11 +30,14 @@ pad.addEventListener("click", (e) => {
         break;
 
       case "=":
-        let wellFormed = consolidateEquation();
-        console.log(wellFormed);
+        let wellFormed = consolidateEquation(); //merge array of chars to calculatable array
+        let result = calculate(wellFormed); //calculate result
+        equation = result.split(""); //turn numeric result back into array of chars
+        if (equation.length >= 15) {
+          equation.splice(14); //handles numbers too big to display
+        }
         break;
       default: //neither of the above
-        //check if operator
         insertOp(btnTxt);
         break;
     }
@@ -61,8 +64,14 @@ function divide(a, b) {
   return a / b;
 }
 
+function percentage(a) {
+  return a / 100;
+}
+
 //operates give two numbers and an operant
 function operate(a, op, b) {
+  a = parseFloat(a);
+  b = parseFloat(b);
   switch (op) {
     case "+":
       return add(a, b);
@@ -73,9 +82,45 @@ function operate(a, op, b) {
       return multiply(a, b);
     case "/":
       return divide(a, b);
+
+    case "%":
+      return percentage(a);
     default:
       break;
   }
+}
+
+//calculates the result of a well formed equation
+//follows BEDMAS (DMAS)
+function calculate(wellFormed) {
+  //compute all instances of % operator
+  wellFormed.forEach((char, index) => {
+    if (char == "%") {
+      wellFormed.splice(index - 1, 2, operate(wellFormed[index - 1], "%"));
+    }
+  });
+
+  wellFormed.forEach((char, index) => {
+    if (char == "*" || char == "/") {
+      wellFormed.splice(
+        index - 1,
+        3,
+        operate(wellFormed[index - 1], char, wellFormed[index + 1])
+      );
+    }
+  });
+
+  wellFormed.forEach((char, index) => {
+    if (char == "+" || char == "-") {
+      wellFormed.splice(
+        index - 1,
+        3,
+        operate(wellFormed[index - 1], char, wellFormed[index + 1])
+      );
+    }
+  });
+
+  return `${wellFormed}`;
 }
 
 /**
@@ -83,6 +128,11 @@ function operate(a, op, b) {
  */
 function updateDisplay() {
   display.innerText = equation.join("");
+}
+
+//tells the user the equation they entered cant be calculated
+function invalidate() {
+  window.alert("Format Invalid");
 }
 
 /**
@@ -100,6 +150,11 @@ function consolidateEquation() {
  * Check if inserting a op is valid
  */
 function insertOp(op) {
+  //equation maximun 15 characters
+  if (equation.length >= 15) {
+    return;
+  }
+
   let prev = equation.at(-1);
 
   //get flags about this op and the previous char in the equation
@@ -128,7 +183,7 @@ function insertOp(op) {
     //equation[] = [0], should not be [0,0], or
     //prev is "%" or
     (prevType.isZero && prevType.isFirst) || prevType.isPercent
-      ? console.log("Invalid format")
+      ? invalidate()
       : equation.push(op);
     return;
   }
@@ -136,7 +191,7 @@ function insertOp(op) {
   //if trying to push any number
   if (opType.isNumber) {
     if (prevType.isPercent) {
-      console.log("Invalid format");
+      invalidate();
     } else if (prevType.isFirst && prevType.isZero) {
       equation = [op];
     } else {
@@ -151,7 +206,7 @@ function insertOp(op) {
     prevType.isPercent ||
     prevType.isBasic ||
     notValidDecimal()
-      ? console.log("Invalid format")
+      ? invalidate()
       : equation.push(op);
     return;
   }
@@ -159,16 +214,14 @@ function insertOp(op) {
   //if trying to push a percentage operator
   if (opType.isPercent) {
     prevType.isBasic || prevType.isDecimal || prevType.isPercent
-      ? console.log("Invalid format")
+      ? invalidate()
       : equation.push(op);
     return;
   }
 
   //if trying to push a basic operator: +, - *, /
   if (opType.isBasic) {
-    prevType.isBasic || prevType.isDecimal
-      ? console.log("Invalid format")
-      : equation.push(op);
+    prevType.isBasic || prevType.isDecimal ? invalidate() : equation.push(op);
     return;
   }
 }
