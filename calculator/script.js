@@ -86,13 +86,12 @@ function updateDisplay() {
 }
 
 /**
- * Returns a well formed equation ready to be computeed
+ * Returns a well formed equation ready to be computed
  */
 function consolidateEquation() {
-  //increment counter until reached a NaN, set tail, add to wellFormed
-
   let wellFormed = equation.join("");
 
+  //this regex splits and keeps the delimters "+-*/%"
   wellFormed = wellFormed.split(/(?=[\+\-\*\/\%])|(?<=[\+\-\*\/\%])/g);
   return wellFormed;
 }
@@ -137,7 +136,7 @@ function insertOp(op) {
   //if trying to push any number
   if (opType.isNumber) {
     if (prevType.isPercent) {
-      console.log("err");
+      console.log("Invalid format");
     } else if (prevType.isFirst && prevType.isZero) {
       equation = [op];
     } else {

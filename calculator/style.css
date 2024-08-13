@@ -3,7 +3,7 @@
   --champagne-pink: #eddcd2ff;
   --linen: #fff1e6ff;
   --isabelline: rgb(216, 215, 211);
-  --desert-sand: #ddbea9ff;
+  --desert-sand: rgb(211, 187, 172);
   --sage: #a5a58dff;
   --ash-gray: #b7b7a4ff;
   --dark: #484948;
@@ -35,6 +35,7 @@ body {
   align-items: center;
   flex-direction: column;
   flex-wrap: wrap;
+  box-shadow: 10px 10px 2px rgba(0, 0, 0, 0.347);
 }
 
 #display {
