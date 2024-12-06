@@ -1,0 +1,90 @@
+* {
+  margin: 0px;
+  padding: 0px;
+  font-family: Arial, Helvetica, sans-serif;
+  box-sizing: border-box;
+}
+
+#container {
+  display: flex;
+  flex-direction: row;
+}
+
+img {
+  width: 40vw;
+  height: 100vh;
+  object-fit: cover;
+  object-position: center;
+}
+
+#cover {
+  width: 40vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+#logo {
+  background-color: rgba(0, 0, 0, 0.467);
+  color: aliceblue;
+  position: absolute;
+  display: inline;
+  width: 40vw;
+  margin-top: 20vh;
+  padding-top: 32px;
+  padding-bottom: 32px;
+  text-align: center;
+  font-weight: 900;
+  font-style: italic;
+}
+
+#summary {
+  margin: 16px;
+  color: rgb(64, 64, 64);
+}
+
+#slogan {
+  margin: 16px;
+  color: black;
+  font-size: 24px;
+  font-weight: 900;
+}
+
+#form-container {
+  width: 60vw;
+  background-color: rgb(243, 247, 250);
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+}
+
+#fields {
+  box-shadow: 1px 1px 10px -2px;
+  background-color: whitesmoke;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 16px;
+  gap: 8px;
+  padding-left: 64px;
+  padding-right: 64px;
+}
+
+#create-account {
+  font-size: 24px;
+  margin: 8px;
+  margin-top: 16px;
+  border-radius: 8px;
+  padding: 8px;
+  background-color: rgb(44, 44, 105);
+  color: whitesmoke;
+}
+
+#create-account + p {
+  margin: 8px;
+}
+
+.pair {
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 4px;
+  flex-grow: 0;
+}

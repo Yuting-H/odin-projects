@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+
+  <body>
+    <div id="container">
+      <div id="cover">
+        <div id="logo">
+          <h1>Code With Odin</h1>
+        </div>
+        <img src="./photo-1427501482951-3da9b725be23.avif" alt="" />
+      </div>
+      <div id="form-container">
+        <p id="summary">
+          This is NOT a real online service! This is just a demonstration of how
+          forms can be used to take user input
+        </p>
+        <p id="slogan">Sign up to receive the newest news</p>
+        <form action="">
+          <div id="fields">
+            <div class="pair">
+              <label for="firstname">First Name</label>
+              <input required type="text" id="firstname" name="firstname" />
+            </div>
+
+            <div class="pair">
+              <label for="lastname">Last Name</label>
+              <input required type="text" id="lastname" name="lastname" />
+            </div>
+
+            <div class="pair">
+              <label for="email">Email</label>
+              <input required type="email" id="email" name="email" />
+            </div>
+
+            <div class="pair">
+              <label for="phone-num">Phone Number</label>
+              <input type="number" id="phone-num" name="phone-num" />
+            </div>
+
+            <div class="pair">
+              <label for="password">Password</label>
+              <input required type="text" id="password" name="password" />
+            </div>
+
+            <div class="pair">
+              <label for="confirm-password">Confirm Password</label>
+              <input
+                required
+                type="text"
+                id="confirm-password"
+                name="confirm-password"
+              />
+            </div>
+          </div>
+
+          <button id="create-account">Create Account</button>
+          <p>Already have an account? <a href="">Log in</a></p>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
