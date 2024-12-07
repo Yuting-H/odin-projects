@@ -17,6 +17,22 @@ img {
   object-position: center;
 }
 
+input {
+  border: 2px solid gray;
+  border-radius: 12px;
+  font-size: large;
+  padding: 8px;
+}
+
+input:invalid {
+  border-color: red;
+}
+
+input:focus {
+  border-color: blue;
+  outline: none;
+}
+
 #cover {
   width: 40vw;
   height: 100vh;
@@ -60,17 +76,13 @@ img {
 #fields {
   box-shadow: 1px 1px 10px -2px;
   background-color: whitesmoke;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
   padding: 16px;
-  gap: 8px;
-  padding-left: 64px;
-  padding-right: 64px;
+  gap: 4px;
 }
 
 #create-account {
   font-size: 24px;
-  margin: 8px;
+  margin: 1em;
   margin-top: 16px;
   border-radius: 8px;
   padding: 8px;
@@ -79,12 +91,20 @@ img {
 }
 
 #create-account + p {
-  margin: 8px;
+  display: inline;
+  margin-left: 1em;
 }
 
 .pair {
   display: flex;
   flex-flow: column nowrap;
   gap: 4px;
-  flex-grow: 0;
+  margin: min(1vw, 4px);
+  min-width: 10em;
+}
+
+.pair-col {
+  display: flex;
+  flex-flow: row nowrap;
+  gap: 1em;
 }

@@ -23,39 +23,74 @@
         <p id="slogan">Sign up to receive the newest news</p>
         <form action="">
           <div id="fields">
-            <div class="pair">
-              <label for="firstname">First Name</label>
-              <input required type="text" id="firstname" name="firstname" />
+            <div class="pair-col">
+              <div class="pair">
+                <label for="firstname">*First Name</label>
+                <input
+                  placeholder="Jane"
+                  minlength="1"
+                  required
+                  type="text"
+                  id="firstname"
+                  name="firstname"
+                  min="2"
+                />
+              </div>
+              <div class="pair">
+                <label for="lastname">*Last Name</label>
+                <input
+                  placeholder="Doe"
+                  minlength="1"
+                  type="text"
+                  id="lastname"
+                  name="lastname"
+                />
+              </div>
             </div>
 
-            <div class="pair">
-              <label for="lastname">Last Name</label>
-              <input required type="text" id="lastname" name="lastname" />
+            <div class="pair-col">
+              <div class="pair">
+                <label for="email">*Email</label>
+                <input
+                  placeholder="your-email@example.com"
+                  required
+                  type="email"
+                  id="email"
+                  name="email"
+                />
+              </div>
+              <div class="pair">
+                <label for="phone-num">Phone Number</label>
+                <input
+                  placeholder="999-1234567"
+                  type="number"
+                  id="phone-num"
+                  name="phone-num"
+                />
+              </div>
             </div>
 
-            <div class="pair">
-              <label for="email">Email</label>
-              <input required type="email" id="email" name="email" />
-            </div>
-
-            <div class="pair">
-              <label for="phone-num">Phone Number</label>
-              <input type="number" id="phone-num" name="phone-num" />
-            </div>
-
-            <div class="pair">
-              <label for="password">Password</label>
-              <input required type="text" id="password" name="password" />
-            </div>
-
-            <div class="pair">
-              <label for="confirm-password">Confirm Password</label>
-              <input
-                required
-                type="text"
-                id="confirm-password"
-                name="confirm-password"
-              />
+            <div class="pair-col">
+              <div class="pair">
+                <label for="password">*Password</label>
+                <input
+                  placeholder="Choose a strong password"
+                  required
+                  type="text"
+                  id="password"
+                  name="password"
+                />
+              </div>
+              <div class="pair">
+                <label for="confirm-password">*Confirm Password</label>
+                <input
+                  placeholder="retype password"
+                  required
+                  type="text"
+                  id="confirm-password"
+                  name="confirm-password"
+                />
+              </div>
             </div>
           </div>
 
