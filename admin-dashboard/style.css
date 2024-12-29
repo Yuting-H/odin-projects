@@ -200,5 +200,9 @@ svg {
 
 .card div {
   margin-left: auto;
-  background-color: red;
+}
+
+.project-actions {
+  margin: 16px;
+  margin-top: auto;
 }

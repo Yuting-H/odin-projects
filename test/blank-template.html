@@ -4,9 +4,33 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <title>Table template</title>
-    <link href="minimal-table.css" rel="stylesheet" type="text/css" />
+    <link href="./style.css" rel="stylesheet" type="text/css" />
+    <script defer src="./script.js"></script>
   </head>
   <body>
-    <h1>Table template</h1>
+    <div id="header">
+      <h1>Library of Books</h1>
+    </div>
+
+    <div id="add-book">
+      <h3>Add a book:</h3>
+      <input
+        type="text"
+        name=""
+        id="author"
+        placeholder="Author name"
+        value="George R R Martin"
+      />
+      <input
+        type="text"
+        name=""
+        id="year"
+        placeholder="Year published"
+        value="1995"
+      />
+      <button id="addBtn">Add Book</button>
+    </div>
+
+    <div id="content"></div>
   </body>
 </html>
