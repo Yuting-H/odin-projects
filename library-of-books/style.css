@@ -1,14 +1,14 @@
 :root {
   --pale: #f6f1df;
   --gray: #a79e9e;
-  --navy: #401111;
+  --maroon: #401111;
 }
 
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: monospace;
 }
 
 input {
@@ -17,17 +17,23 @@ input {
 
 button {
   padding: 4px;
-  border-radius: 16px;
+  border-radius: 4px;
+  border: 2px solid var(--pale);
+  color: var(--pale);
+  background-color: var(--maroon);
 }
 
 .card {
+  font-family: monospace;
   border: 2px solid black;
+  padding: 8px;
+  background-color: var(--pale);
 }
 
 #header {
   padding: 32px;
   color: var(--pale);
-  background-color: var(--navy);
+  background-color: var(--maroon);
 }
 
 #add-book {
@@ -41,5 +47,6 @@ button {
   height: 100%;
   display: grid;
   gap: 16px;
+  padding: 16px;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
 }
