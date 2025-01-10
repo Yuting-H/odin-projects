@@ -1,0 +1,31 @@
+* {
+  padding: 0;
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  box-sizing: border-box;
+}
+
+body {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#board {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  width: fit-content;
+  border: 1px solid black;
+}
+
+.tile {
+  border: 1px solid black;
+  height: 200px;
+  width: 200px;
+}
+
+.tile:hover {
+  background-color: rgba(0, 0, 0, 0.196);
+}
