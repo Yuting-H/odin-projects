@@ -1,3 +1,5 @@
+let boardElem = document.getElementById("board");
+
 const gameboard = (() => {
   gameEnded = false;
 
@@ -7,16 +9,31 @@ const gameboard = (() => {
   const mark = (marker, index) => {
     if (!gameEnded) {
       if (board[index] == null) {
+        //marks the tile
         board[index] = marker;
+
         if (checkWin(marker, index) == true) {
           gameEnded = true;
-          console.log(marker + "Won");
+          console.log(marker + " Won");
+        }
+
+        if (fullBoard()) {
+          gameEnded = true;
         }
       }
     } else {
       console.log("Game ended, no moves can be made");
     }
   };
+
+  function fullBoard() {
+    board.forEach((element) => {
+      if (element == null) {
+        return true;
+      }
+    });
+    return false;
+  }
 
   //checks if a marker (X or O) won the game
   function checkWin(marker, index) {
@@ -68,13 +85,41 @@ const gameboard = (() => {
   return { mark };
 })();
 
-function Player(marker) {
-  this.marker = marker;
-}
+const players = (() => {
+  this.mark = "O";
 
-p1 = new Player("X");
-p2 = new Player("O");
+  //switch up marks whenever it is called
+  function getMark() {
+    if (mark == "O") {
+      mark = "X";
+    } else if (mark == "X") {
+      mark = "O";
+    }
+    return mark;
+  }
 
-gameboard.mark(p1.marker, 0);
-gameboard.mark(p1.marker, 1);
-gameboard.mark(p1.marker, 2);
+  return { getMark };
+})();
+
+//Variable containing board dom model
+const boardDom = (() => {
+  function refreshBoardDom() {
+    boardElem.innerHTML = "";
+    for (let index = 0; index < 9; index++) {
+      boardElem.appendChild(createTile(index));
+    }
+  }
+
+  function createTile(index) {
+    var tile = document.createElement("div");
+    tile.classList.add("tile");
+
+    tile.addEventListener("click", () => {
+      gameboard.mark(players.getMark(), index);
+    });
+    return tile;
+  }
+  return { refreshBoardDom };
+})();
+
+boardDom.refreshBoardDom();
