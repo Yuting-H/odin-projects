@@ -11,6 +11,7 @@ const gameboard = (() => {
       if (board[index] == null) {
         //marks the tile
         board[index] = marker;
+        boardElem.childNodes[index].innerHTML = marker;
 
         if (checkWin(marker, index) == true) {
           gameEnded = true;
@@ -26,6 +27,7 @@ const gameboard = (() => {
     }
   };
 
+  //checks if the board is full or not
   function fullBoard() {
     board.forEach((element) => {
       if (element == null) {
@@ -52,16 +54,16 @@ const gameboard = (() => {
       }
     }
 
-    //checks columns
-    if (index / 3 < 1) {
+    //checks columns, only check the columns where the last move was played
+    if (index % 3 < 1) {
       if (board[0] == marker && board[3] == marker && board[6] == marker) {
         return true;
       }
-    } else if (index / 3 < 2) {
+    } else if (index % 3 < 2) {
       if (board[1] == marker && board[4] == marker && board[7] == marker) {
         return true;
       }
-    } else if (index / 3 < 3) {
+    } else if (index % 3 < 3) {
       if (board[2] == marker && board[5] == marker && board[8] == marker) {
         return true;
       }
@@ -114,6 +116,7 @@ const boardDom = (() => {
     var tile = document.createElement("div");
     tile.classList.add("tile");
 
+    //when clicked, update board model
     tile.addEventListener("click", () => {
       gameboard.mark(players.getMark(), index);
     });

@@ -1,7 +1,7 @@
-function Input({ type = "input", text = "asdasd" }) {
+function Input({ handleChange }) {
   return (
     <>
-      <input type="button"> askdh</input>
+      <input type="type" onChange={handleChange}></input>
     </>
   );
 }
