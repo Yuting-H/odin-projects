@@ -3,10 +3,18 @@ let boardElem = document.getElementById("board");
 const gameboard = (() => {
   gameEnded = false;
 
-  const board = [null, null, null, null, null, null, null, null, null];
+  let board = [null, null, null, null, null, null, null, null, null];
+
+  function resetGame() {
+    board = [null, null, null, null, null, null, null, null, null];
+
+    gameEnded = false;
+    players.reset();
+    boardDom.refreshBoardDom();
+  }
 
   //marks a square with X or O
-  const mark = (marker, index) => {
+  function mark(marker, index) {
     if (!gameEnded) {
       if (board[index] == null) {
         //marks the tile
@@ -25,7 +33,7 @@ const gameboard = (() => {
     } else {
       console.log("Game ended, no moves can be made");
     }
-  };
+  }
 
   //checks if the board is full or not
   function fullBoard() {
@@ -84,11 +92,15 @@ const gameboard = (() => {
     return false;
   }
 
-  return { mark };
+  return { mark, resetGame };
 })();
 
 const players = (() => {
   this.mark = "O";
+
+  function reset() {
+    mark = "O";
+  }
 
   //switch up marks whenever it is called
   function getMark() {
@@ -100,7 +112,7 @@ const players = (() => {
     return mark;
   }
 
-  return { getMark };
+  return { getMark, reset };
 })();
 
 //Variable containing board dom model
