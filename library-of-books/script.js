@@ -19,25 +19,27 @@ addBtn.addEventListener("click", () => {
   displayLibrary();
 });
 
-//the constructor
-function Book(title, author, year) {
-  this.title = title;
-  this.author = author;
-  this.year = year;
-  this.read = false;
+class Book {
+  constructor(title, author, year) {
+    this.title = title;
+    this.author = author;
+    this.year = year;
 
-  this.index = () => {
-    return this.title;
-  };
+    this.read = false;
 
-  this.info = function () {
-    return `
+    this.index = () => {
+      return this.title;
+    };
+
+    this.info = function () {
+      return `
     <div>${title}</div>
     <div>${author}<div>
     <div>${year}</div>
     <div>Read: ${this.read}</div>
     `;
-  };
+    };
+  }
 }
 
 function displayLibrary() {
