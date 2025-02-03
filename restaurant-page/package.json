@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "webpack --mode production",
+    "deploy": "npm run build && cp -r dist ../restaurant/"
   },
   "author": "",
   "license": "ISC",

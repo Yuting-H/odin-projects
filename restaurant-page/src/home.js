@@ -6,7 +6,7 @@ const home = (() => {
   homediv.style.display = "flex";
   homediv.style.justifyContent = "center";
 
-  title.innerHTML = "Welcome to Restaurant";
+  title.innerHTML = "Welcome to my Mock Restaurant Page";
 
   return homediv;
 })();
