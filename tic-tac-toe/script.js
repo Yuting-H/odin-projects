@@ -1,6 +1,10 @@
 let boardElem = document.getElementById("board");
 
-const gameboard = (() => {
+/* gameBoard is an object containing
+an array of cells represeting cells on the board
+and functions governing functions of the game
+ */
+const gameBoard = (() => {
   gameEnded = false;
 
   let board = [null, null, null, null, null, null, null, null, null];
@@ -93,8 +97,11 @@ const gameboard = (() => {
   }
 
   return { mark, resetGame };
-})();
+})(); //end of gameBoard object
 
+/**
+ * player is an object governing marks on the game board
+ */
 const players = (() => {
   this.mark = "O";
 
@@ -103,7 +110,7 @@ const players = (() => {
   }
 
   //switch up marks whenever it is called
-  function getMark() {
+  function switchMark() {
     if (mark == "O") {
       mark = "X";
     } else if (mark == "X") {
@@ -112,10 +119,12 @@ const players = (() => {
     return mark;
   }
 
-  return { getMark, reset };
+  return { switchMark, reset };
 })();
 
-//Variable containing board dom model
+/**
+ * Object containing board dom model
+ */
 const boardDom = (() => {
   function refreshBoardDom() {
     boardElem.innerHTML = "";
@@ -130,7 +139,15 @@ const boardDom = (() => {
 
     //when clicked, update board model
     tile.addEventListener("click", () => {
-      gameboard.mark(players.getMark(), index);
+      gameBoard.mark(players.switchMark(), index);
+    });
+
+    tile.addEventListener("mouseenter", () => {
+      boardElem.style.backgroundColor = "red";
+    });
+
+    tile.addEventListener("mouseleave", () => {
+      boardElem.style.backgroundColor = "white";
     });
     return tile;
   }
@@ -138,3 +155,6 @@ const boardDom = (() => {
 })();
 
 boardDom.refreshBoardDom();
+document
+  .getElementById("resetGameBtn")
+  .addEventListener("click", gameBoard.resetGame);
