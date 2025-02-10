@@ -127,12 +127,14 @@ const players = (() => {
  */
 const boardDom = (() => {
   function refreshBoardDom() {
+    //wipe then reconstruct
     boardElem.innerHTML = "";
     for (let index = 0; index < 9; index++) {
       boardElem.appendChild(createTile(index));
     }
   }
 
+  //helper function to reconstruct board dom
   function createTile(index) {
     var tile = document.createElement("div");
     tile.classList.add("tile");
