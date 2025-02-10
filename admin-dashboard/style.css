@@ -207,6 +207,10 @@ svg {
   margin-top: auto;
 }
 
+.project-actions button {
+  border-radius: 8px;
+}
+
 .block {
   border-bottom: 1px solid var(--theme-grey);
   padding: 16px;
