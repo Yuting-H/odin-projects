@@ -142,13 +142,6 @@ const boardDom = (() => {
       gameBoard.mark(players.switchMark(), index);
     });
 
-    tile.addEventListener("mouseenter", () => {
-      boardElem.style.backgroundColor = "red";
-    });
-
-    tile.addEventListener("mouseleave", () => {
-      boardElem.style.backgroundColor = "white";
-    });
     return tile;
   }
   return { refreshBoardDom };
