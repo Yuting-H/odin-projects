@@ -23,9 +23,9 @@ body {
   color: var(--dim-white);
   background-color: var(--dark-navy);
   padding: 16px;
-  flex-grow: 1;
   display: flex;
   flex-flow: column nowrap;
+  flex-basis: clamp(200px, 30vw, 400px);
   gap: 16px;
 }
 
@@ -57,5 +57,5 @@ body {
 #content {
   background-color: var(--dim-white);
   padding: 16px;
-  flex-grow: 3;
+  flex-grow: 1;
 }
