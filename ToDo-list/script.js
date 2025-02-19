@@ -1,22 +1,27 @@
-const notePad = document.getElementById("note-pad");
+import createProject from "./project.js";
 
-const newNoteBtn = document.getElementById("new-note-btn");
+//stores objects representing projects
+let projects = [];
 
-newNoteBtn.addEventListener("click", () => {
-  newEmptyNote();
-});
+//Stores DOM Stuff
+const dom = (() => {
+  const projectPanel = document.getElementById("project-panel");
+  const projectList = document.getElementById("project-list");
+  const contentPanel = document.getElementById("content");
+  const newTaskButton = document.getElementById("new-task-btn");
 
-function newEmptyNote() {
-  const note = document.createElement("div");
-  note.classList.add("note");
+  //Adds a new project dom element and push it to projects array
+  function addNewProject({ projectName, node }) {
+    projects.push(projectName);
+    projectList.appendChild(node);
+  }
 
-  const text = "default text";
+  document.getElementById("new-project-btn").addEventListener("click", () => {
+    addNewProject(createProject());
+  });
 
-  note.innerText = text;
+  return { addNewProject };
+})();
 
-  notePad.appendChild(note);
-
-  return { note, text };
-}
-
-const myNote = newEmptyNote();
+dom.addNewProject(createProject("ASDF"));
+console.log(projects.pop());
