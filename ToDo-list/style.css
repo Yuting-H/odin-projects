@@ -1,7 +1,8 @@
 :root {
-  --dim-white: #dbdbdb;
-  --dark-navy: #112143;
+  --dim-white: #ebedf0;
+  --dark-navy: #0b1936;
   --marker: #0e0e0e;
+  --highlight: #bdd3ff;
 }
 
 * {
@@ -35,23 +36,37 @@ body {
   gap: 16px;
 }
 
-#project-list input {
-  width: 50%;
-}
-
 .project-tab {
   font-size: x-large;
   background-color: var(--dim-white);
   color: var(--marker);
-  padding: 4px;
+  padding: 8px;
   display: flex;
   flex-grow: 0;
+  justify-content: space-between;
   overflow: hidden;
+  border-radius: 4px;
+}
+
+.project-tab input {
+  width: 70%;
+  font-size: large;
+  background-color: var(--dim-white);
+  border: none;
+  border-bottom: 1px solid black;
+}
+
+.project-tab input:focus {
+  outline: none;
 }
 
 .project-tab:hover {
-  background-color: yellow;
+  background-color: var(--highlight);
   cursor: pointer;
+}
+
+.project-tab:hover * {
+  background-color: var(--highlight);
 }
 
 #content {

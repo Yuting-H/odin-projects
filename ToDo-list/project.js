@@ -1,21 +1,12 @@
-function createProject(projectName = "Project Name") {
+import createTask from "./tasks.js";
+
+//Return an object representing a project
+function createProject(name = "Project Name") {
   let tasks = [];
 
-  //top level div
-  let node = document.createElement("div");
-  node.classList.add("project-tab");
+  tasks.push(createTask());
 
-  let nameInput = document.createElement("input");
-  nameInput.value = projectName;
-  node.appendChild(nameInput);
-
-  //handle click
-  node.addEventListener("click", () => {
-    console.log("WOW");
-  });
-  console.log("new proj");
-
-  return { projectName, node };
+  return { name, tasks };
 }
 
 export default createProject;
