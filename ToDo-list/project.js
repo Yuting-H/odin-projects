@@ -5,11 +5,14 @@ function createProject(pid = 0) {
   let name = "Project Name";
   let tasks = [];
 
+  let addTask = () => {
+    tasks.push(createTask());
+  };
   //two empty default task
-  tasks.push(createTask());
-  tasks.push(createTask());
-  console.table(tasks);
-  return { name, tasks, pid };
+  addTask();
+  addTask();
+
+  return { name, tasks, addTask };
 }
 
 export default createProject;
