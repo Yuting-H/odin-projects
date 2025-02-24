@@ -8,13 +8,12 @@ let focusedProject;
 //Stores DOM Stuff
 const dom = (() => {
   const projectList = document.getElementById("project-list");
-  const contentPanel = document.getElementById("content");
-
   const taskList = document.getElementById("task-list");
 
-  function refreshTaskList(tasks) {
+  function refreshTaskList() {
     taskList.innerHTML = "";
-    tasks.forEach((task) => {
+    focusedProject.tasks.forEach((task) => {
+      console.log("task displayed");
       taskList.appendChild(elementFactory.createTaskNode(task));
     });
   }
@@ -30,7 +29,7 @@ const dom = (() => {
     focusedProject = project;
 
     //clear task list, then display this project's tasks
-    refreshTaskList(project.tasks);
+    refreshTaskList();
   }
 
   //Handle new project button clicks
@@ -42,12 +41,13 @@ const dom = (() => {
     //add new task
     if (focusedProject != null) {
       focusedProject.addTask();
+      console.log("new task added");
     }
     console.log(focusedProject);
-    refreshTaskList(focusedProject.tasks);
+    refreshTaskList();
   });
 
-  return { addNewProject };
+  return { refreshTaskList, addNewProject };
 })();
 
 //creates element from object
@@ -70,7 +70,7 @@ const elementFactory = (() => {
     //on click set focusedProject
     node.addEventListener("click", () => {
       focusedProject = project;
-      console.log(project);
+      dom.refreshTaskList();
     });
 
     //on delete button click
