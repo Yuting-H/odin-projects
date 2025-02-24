@@ -52,11 +52,14 @@ body {
   width: 70%;
   font-size: large;
   background-color: var(--dim-white);
+}
+
+.underline-input {
   border: none;
   border-bottom: 1px solid black;
 }
 
-.project-tab input:focus {
+.underline-input:focus {
   outline: none;
 }
 
@@ -73,4 +76,20 @@ body {
   background-color: var(--dim-white);
   padding: 16px;
   flex-grow: 1;
+}
+
+#task-list {
+  margin: 16px;
+  background-color: var(--dim-white);
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 16px;
+}
+
+.task {
+  padding: 4px;
+  background-color: white;
+  border-radius: 4px;
+  display: flex;
+  justify-content: space-between;
 }
