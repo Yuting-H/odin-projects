@@ -17,6 +17,7 @@ function showValues() {
     const valueDiv = document.createElement("div");
     valueDiv.innerHTML = value;
     dropdownNode.appendChild(valueDiv);
+    dropdownNode.style.lineHeight = 1;
   });
 }
 
@@ -24,6 +25,7 @@ function hideValues() {
   let nameNode = dropdownNode.firstChild;
   dropdownNode.innerHTML = "";
   dropdownNode.appendChild(nameNode);
+  dropdownNode.style.lineHeight = 0;
 }
 
 nameDiv.addEventListener("click", () => {

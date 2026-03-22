@@ -1,7 +1,11 @@
-function Input({ handleChange }) {
+function Input({ setValue }) {
   return (
     <>
-      <input type="type" onChange={handleChange}></input>
+      <input
+        type="type"
+        onChange={() => {
+          setValue(event.target.value);
+        }}></input>
     </>
   );
 }
